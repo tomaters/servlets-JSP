@@ -109,4 +109,36 @@
     <servlet-name>CreateAccount</servlet-name>
     <url-pattern>/ca</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Source</display-name>
+    <servlet-name>Source</servlet-name>
+    <servlet-class>sample.Source</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Source</servlet-name>
+    <url-pattern>/Source</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Destination</display-name>
+    <servlet-name>Destination</servlet-name>
+    <servlet-class>sample.Destination</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Destination</servlet-name>
+    <url-pattern>/Destination</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <exception-type>java.lang.NullPointerException</exception-type>
+    <location>/error/errorNullPointer.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/error404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/error500.jsp</location>
+  </error-page>
 </web-app>

@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page isErrorPage = "true" %>
+<% response.setStatus(HttpServletResponse.SC_OK); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+	<head><title>Error</title></head>
+	<body>
+	Error occurred<br></br>
+	Fix it
+	<br></br>
+	Error type: <%= exception.getClass().getName() %> <br></br>
+	Error message: <b><%= exception.getMessage() %></b>
+</body>
+</html>

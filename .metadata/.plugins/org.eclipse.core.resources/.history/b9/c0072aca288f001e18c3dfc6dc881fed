@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="Source" method="get">
+		<input type="text" name="age">
+		<input type="submit" value="call source servlet"/>		
+	</form>
+
+<a href="http://localhost:8080/jsptest/Source?age=15">Call source servlet</a>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	Date date = new Date();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hello jsp</title>
+</head>
+<body>
+	<h2>Hello JSP</h2>
+	<h3>Current date: <%=
+	date.toString()
+	%></h3>
+</body>
+</html>

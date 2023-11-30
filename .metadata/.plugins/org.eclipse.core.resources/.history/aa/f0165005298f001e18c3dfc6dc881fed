@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<brbody>
+	Input age directly
+	<form action="Source" method="post">
+		<input type="text" name="age">
+		<input type="submit" value="Age"/>		
+	</form>
+	
+	<h6>Change url to set age to 15</h6>
+	<a href="http://localhost:8080/jsptest/Source?age=15">Call source servlet</a>
+</body>
+</html>
