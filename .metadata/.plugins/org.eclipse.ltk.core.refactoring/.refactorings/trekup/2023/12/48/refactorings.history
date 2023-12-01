@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;trekup/src/main/webapp/pages/front_page.jsp&apos; to &apos;frontPage.jsp&apos;" description="Rename resource &apos;front_page.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/pages/front_page.jsp" name="frontPage.jsp" stamp="1701403441563" updateReferences="true"/>
+</session>

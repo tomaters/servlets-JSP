@@ -1,0 +1,53 @@
+<%@page import="jdbc.TempMemberVO"%>
+<%@page import="java.util.Vector"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<html>
+<head>
+<title>JSP-DB connection</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFCC">
+	<h2>Connect to DB using beans</h2>
+	<br></br>
+	<h3>User information</h3>
+	<table border="1">
+		<tr>
+			<td><strong>ID</strong></td>
+			<td><strong>PASSWD</strong></td>
+			<td><strong>NAME</strong></td>
+			<td><strong>MEM_NUM1</strong></td>
+			<td><strong>MEM_NUM2</strong></td>
+			<td><strong>E_MAIL</strong></td>
+			<td><strong>PHONE</strong></td>
+			<td><strong>ZIPCODE/ADDRESS</strong></td>
+			<td><strong>JOB</strong></td>
+		</tr>
+		<jsp:useBean id="dao" class="jdbc.TempMemberDAO" scope="page" />
+		<!-- TempMemberDAO tempMemberDAO = new TempMemberDAO(); -->
+		
+		<%
+		Vector<TempMemberVO> vectorList = dao.getMemberList();
+		int counter = vectorList.size();
+		for (int i = 0; i < counter; i++) {
+			TempMemberVO tempMemberVO = vectorList.elementAt(i);
+		%>
+		<tr>
+			<td><%=tempMemberVO.getId()%></td>
+			<td><%=tempMemberVO.getPasswd()%></td>
+			<td><%=tempMemberVO.getName()%></td>
+			<td><%=tempMemberVO.getMem_num1()%></td>
+			<td><%=tempMemberVO.getMem_num2()%></td>
+			<td><%=tempMemberVO.getEmail()%></td>
+			<td><%=tempMemberVO.getPhone()%></td>
+			<td><%=tempMemberVO.getZipcode()%>/<%=tempMemberVO.getAddress()%></td>
+			<td><%=tempMemberVO.getJob()%></td>
+			<%
+			}
+			%>
+		</tr>
+	</table>
+	<br></br> total records :
+	<%=counter%>
+</body>
+</html>

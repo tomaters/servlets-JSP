@@ -1,0 +1,47 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+public class TempMemberDAO {
+	    
+    public TempMemberDAO() {}
+    
+    public Vector<TempMemberVO> getMemberList() {
+	    Connection connection = null;
+	    Statement statement = null;
+	    ResultSet resultSet = null;
+	    ConnectionPool connectionPool = null;
+    Vector<TempMemberVO> vectorList = new Vector<TempMemberVO>();
+    try {
+             connection = DriverManager.getConnection(JDBC_URL,USER,PASS);
+             String strQuery = "select * from tempMember";
+             statement = connection.createStatement();
+             resultSet = statement.executeQuery(strQuery);
+        while (resultSet.next()) {
+                  TempMemberVO vo = new tempMemberVO();
+         vo.setId (resultSet.getString("id"));
+         vo.setPasswd (resultSet.getString("passwd"));
+          vo.setName (resultSet.getString("name"));
+          vo.setMem_num1 (resultSet.getString("mem_num1"));
+          vo.setMem_num2 (resultSet.getString("mem_num2"));
+          vo.setEmail (resultSet.getString("e_mail"));
+          vo.setPhone (resultSet.getString("phone"));
+          vo.setZipcode (resultSet.getString("zipcode"));
+          vo.setAddress (resultSet.getString("address"));
+          vo.setJob (resultSet.getString("job"));
+                  vectorList.add(vo);
+             }
+         } catch (Exception ex) {
+              System.out.println("Exception" + ex);
+         } finally {
+               if(resultSet!=null)   try{resultSet.close();}  catch(SQLException e){}
+          if(statement!=null) try{statement.close();}catch(SQLException e){}
+          if(connection!=null) try{connection.close();}catch(SQLException e){}
+         }
+         return vectorList;
+    }
+ }
+}
