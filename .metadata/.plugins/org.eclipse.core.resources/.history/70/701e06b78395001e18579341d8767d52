@@ -1,0 +1,5 @@
+package jstl;
+
+public class MemberVO {
+
+}
