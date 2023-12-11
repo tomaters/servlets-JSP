@@ -1,0 +1,7 @@
+package mvcMem.control;
+
+import jakarta.servlet.http.HttpServlet;
+
+public class MemControlServlet extends HttpServlet {
+	private static final long serialVersion
+}

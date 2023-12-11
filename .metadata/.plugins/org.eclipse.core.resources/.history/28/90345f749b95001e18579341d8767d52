@@ -1,0 +1,9 @@
+package mvc.action;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import mvc.control.ActionForward;
+
+public interface Action {
+	public abstract ActionForward execute(HttpServletRequest request, HttpServletResponse response)
+}

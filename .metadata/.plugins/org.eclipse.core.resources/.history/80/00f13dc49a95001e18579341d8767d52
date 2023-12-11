@@ -1,0 +1,19 @@
+package mvc.control;
+
+public class ActionForward {
+
+	private String url;
+	// if true, redirect; if false, forward
+	private boolean redirect;
+	
+	public ActionForward() {
+		super();
+	}
+	public ActionForward(String url) {
+		this.url = url;
+	}
+	public ActionForward(String url, boolean redirect) {
+		this.url = url;
+		this.redirect = redirect;
+	}
+}

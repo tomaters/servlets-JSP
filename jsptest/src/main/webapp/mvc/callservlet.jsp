@@ -1,0 +1,10 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+<head>
+<title>Call servlet</title>
+</head>
+<body>
+<a href="http://localhost:8080/jsptest/mvc/test.do?cmd=index">Request page</a>
+</body>
+</html>

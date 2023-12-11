@@ -1,0 +1,5 @@
+package mvc.control.action;
+
+public class Action {
+
+}

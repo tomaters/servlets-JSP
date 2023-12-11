@@ -1,0 +1,21 @@
+package mvc.control;
+
+import java.awt.Desktop.Action;
+
+public class ActionFactory {
+// made as a singleton
+	private static ActionFactory factory = new ActionFactory();
+
+	private ActionFactory() {}
+
+	public static synchronized ActionFactory getInstance() {
+		if(factory == null) {
+			factory = new ActionFactory();
+		}
+		return factory;
+	}
+	public Action getAction(String command) {
+		Action action = null;
+		return action;
+	}
+}

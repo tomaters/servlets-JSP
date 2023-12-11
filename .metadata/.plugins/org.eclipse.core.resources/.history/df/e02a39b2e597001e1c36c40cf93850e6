@@ -1,0 +1,19 @@
+package mvcMem.action;
+
+import java.io.IOException;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import mvcMem.control.ActionForward;
+import mvcMem.model.StudentDAO;
+
+public class ModifyFormAction implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		StudentDAO studentDAO = StudentDAO.getInstance();
+		HttpSession httpSession = request.getSession();
+	}
+	
+}

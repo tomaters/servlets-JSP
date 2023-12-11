@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content ="text/html"; charset="UTF-8">
+<meta http-equiv="Refresh" content="1"; url=login.jsp">
+<title>Update process</title>
+</head>
+<body>
+		Account update successful. Return to login page in three seconds
+</body>
+</html>

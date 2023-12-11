@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modify information</title>
+<link href="css/style.css" type="test/css" rel="stylesheet"/>
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<form method="post" action="member.mdo?cmd=modifyProc" name="regForm">
+		<table border="1">
+			<tr><td colspan="2" align="center">Enter information to edit</td></tr>
+			<tr>
+				<td align="right">ID: </td>
+				<td><input type="hidden" name="id" value="${id}" />
+				<c:out value="${id}"/></td></tr>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

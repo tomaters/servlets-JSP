@@ -1,7 +1,0 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<hr color="red">
-bottom.jsp<p>
-<p align="center">name <b><%=name%></b> yea</ p>
-</body>
-</html>

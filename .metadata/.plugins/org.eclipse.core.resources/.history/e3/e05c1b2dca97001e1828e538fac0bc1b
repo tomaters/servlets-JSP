@@ -1,0 +1,87 @@
+package mvcMem.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class StudentDAO {
+
+	private static StudentDAO instance = null;
+	private StudentDAO() {}
+	public static StudentDAO getInstance() {
+		if(instance == null) {
+			synchronized(StudentDAO.class) {
+				instance = new StudentDAO();
+			}
+		} return instance;
+	}
+	
+	private Connection getConnection() {
+		Connection connection = null;
+		try {
+			Context init = new InitialContext();
+			DataSource dataSource = (DataSource)init.lookup("java:comp/env/jdbc/myOracle");
+			connection = dataSource.getConnection();
+		} catch(NamingException e) {
+			System.out.println("Failed to make connection: ");
+			e.printStackTrace();
+		} catch(SQLException e) {
+			System.out.println("Failed to make connection: ");
+			e.printStackTrace();
+		}
+		return connection;
+	}
+	
+	public boolean idCheck(String id) {
+		boolean result = true;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement("SELECT * FROM student WHERE id=?");
+			preparedStatement.setString(1, id);
+			resultSet = preparedStatement.executeQuery();
+			if(!resultSet.next()) result = false;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(resultSet != null)
+				try { resultSet.close();
+				} catch(SQLException e) {}
+			if(preparedStatement != null)
+				try { preparedStatement.close();
+				} catch(SQLException e2) {}
+			if(connection != null) 
+				try {connection.close();
+				} catch(SQLException e3) {}
+		} return result;
+	}
+	public Vector<ZipCodeVO> zipcodeRead(String dong){
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = getConnection();
+			preparedStatement = connection.prepareStatement("SELECT * FROM zipcode WHERE dong like " + dong + "%");
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				ZipCodeVO tempZipCode = new ZipCodeVO();
+				tempZipCode.setZipcode(resultSet.getString("zipcode"));
+				tempZipCode.setSido(resultSet.getString("sido"));
+				tempZipCode.setSido(resultSet.getString("gugun"));
+				tempZipCode.setSido(resultSet.getString("dong"));
+				tempZipCode.setSido(resultSet.getString("bunji"));
+				vecList.addElement(tempZipcode);
+			}
+		}
+				
+	}
+}

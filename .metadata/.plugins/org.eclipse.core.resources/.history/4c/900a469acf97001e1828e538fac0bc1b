@@ -1,0 +1,5 @@
+package mvcMem.model;
+
+public class ZipCodeVO {
+
+}
