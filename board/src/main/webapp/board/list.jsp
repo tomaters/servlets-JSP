@@ -37,14 +37,16 @@
 					<tr height="30">
 						<td align="center" width="50"><c:out value="${number}" /> <c:set var="number" value="${number - 1}" /></td>
 						<td width="250"><c:if test="${article.depth > 0}">
-								<img src="images/level.gif" width="${5 * article.depth}" height="16">
+								<!--  for adding icons -->
+								<!--  <img src="images/level.gif" width="${5 * article.depth}" height="16">
 								<img src="images/re.gif">
+								 -->
 							</c:if> <c:if test="${article.depth == 0}">
-								<img src="images/level.gif" width="${5 * article.depth}" height="16">
+								<!-- <img src="images/level.gif" width="${5 * article.depth}" height="16">  -->
 							</c:if> <a href="/board/content.do?num=${article.num}&pageNum=${currentPage}">
 								${article.subject}
 							</a> <c:if test="${article.readcount >= 20}">
-								<img src="images/hot.gif" border="0" height="16">
+								<!--  <img src="images/hot.gif" border="0" height="16">  -->
 							</c:if></td>
 						<td align="center" width="100"><a href="mailto:${article.email}">${article.writer}</a></td>
 						<td align="center" width="150">${article.regdate}</td>

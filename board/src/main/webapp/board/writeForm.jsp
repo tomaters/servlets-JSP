@@ -27,7 +27,7 @@
 					<td width="330"><c:if test="${num == 0}">
 							<input type="text" size="40" maxlength="50" name="subject">
 						</c:if> <c:if test="${num != 0}">
-							<input type="text" size="40" maxlength="50" name="subject" value="[Response]">
+							<input type="text" size="40" maxlength="50" name="subject" placeholder="Reply">
 						</c:if></td>
 				</tr>
 				<tr>

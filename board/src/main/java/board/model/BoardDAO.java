@@ -56,8 +56,8 @@ public class BoardDAO {
 		try {
 			connection = ConnectionUtil.getConnection();
 			// display all information of selected articles
-			preparedStatement = connection.prepareStatement("SELECT * FROM (SELECT ROWNUM rnum, num, writer, email, subject, pass, readcount, ref, step, depth, content, ip FROM"
-					+ "(SELECT * FROM board ORDER BY ref DESC, step ASC WHERE rnum=? and rnum<=?");
+			preparedStatement = connection.prepareStatement("SELECT * FROM (SELECT ROWNUM rnum, num, writer, email, subject, pass, regdate, readcount, ref, step, depth, content, ip FROM"
+					+ "(SELECT * FROM board ORDER BY ref DESC, step ASC)) WHERE rnum=? and rnum<=?");
 			// location of articles to retrieve in range form
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
@@ -185,6 +185,46 @@ public class BoardDAO {
 				article.setContent(resultSet.getString("content"));
 				article.setIp(resultSet.getString("ip"));
 			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(resultSet != null) 
+				try { resultSet.close();
+				} catch(SQLException e) {}
+			if(preparedStatement != null) 
+				try { preparedStatement.close();
+				} catch(SQLException e) {}
+			if(connection != null) 
+				try { connection.close();
+				} catch(SQLException e) {}	
+		} return article;
+	}
+	
+	public BoardVO updateGetArticle(int num) {
+		Connection connection = null;
+		 PreparedStatement preparedStatement = null;
+		 ResultSet resultSet = null;
+		 BoardVO article = null;
+		try {
+		 connection = ConnectionUtil.getConnection();
+		 preparedStatement = connection.prepareStatement("SELECT * FROM board WHERE num = ?");
+		 preparedStatement.setInt(1, num);
+		 resultSet = preparedStatement.executeQuery();
+		 if (resultSet.next()) {
+		article = new BoardVO();
+		article.setNum(resultSet.getInt("num"));
+		article.setWriter(resultSet.getString("writer"));
+		article.setEmail(resultSet.getString("email"));
+		article.setSubject(resultSet.getString("subject"));
+		article.setPass(resultSet.getString("pass"));
+		article.setRegdate(resultSet.getTimestamp("regdate"));
+		article.setReadcount(resultSet.getInt("readcount"));
+		article.setRef(resultSet.getInt("ref"));
+		article.setStep(resultSet.getInt("step"));
+		article.setDepth(resultSet.getInt("depth"));
+		article.setContent(resultSet.getString("content"));
+		article.setIp(resultSet.getString("ip"));
+		 }
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

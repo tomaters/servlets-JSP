@@ -142,7 +142,9 @@
 
       <Context docBase="C:\webproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\webproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jsptest" path="/jsptest" reloadable="true" source="org.eclipse.jst.jee.server:jsptest">
 <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxIdle="10" maxTotal="8" maxWaitMillis="-1" name="jdbc/myOracle" password="hr" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="hr"/>
-</Context><Context docBase="C:\webproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\trekup" path="/trekup" reloadable="true" source="org.eclipse.jst.jee.server:trekup"/><Context docBase="C:\webproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\board" path="/board" reloadable="true" source="org.eclipse.jst.jee.server:board"/></Host>
+</Context><Context docBase="C:\webproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\trekup" path="/trekup" reloadable="true" source="org.eclipse.jst.jee.server:trekup"/><Context docBase="C:\webproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\board" path="/board" reloadable="true" source="org.eclipse.jst.jee.server:board">
+<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxIdle="10" maxTotal="8" maxWaitMillis="-1" name="jdbc/myOracle" password="hr" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="hr"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
