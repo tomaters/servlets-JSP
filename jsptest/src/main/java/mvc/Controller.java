@@ -53,6 +53,7 @@ public class Controller extends HttpServlet {
 				Object commandInstance = commandClass.newInstance();// construct class object
 				// save Map object as commandMap
 				commandMap.put(command, commandInstance);
+//				System.out.println("commandMap " + commandMap.toString());
 			} catch (ClassNotFoundException e) {
 				throw new ServletException(e);
 			} catch (InstantiationException e) {
@@ -75,47 +76,50 @@ public class Controller extends HttpServlet {
 		processRequest(request, response);
 	}
 
-//	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String view = null;
-//		// does what ActionFactory class did; /mvc/message.di=mvc.MessageProcess
-//		// /jsptest/mvcMem/member.di
-//		String command = request.getRequestURI();
-//		// /jsptest
-//		String path = request.getContextPath();
-//		if(command.indexOf(request.getContextPath()) == 0) {
-//			command = command.substring(0, path.length());
-//		}
-//		// public class MessageProcess implements CommandProcess
-//		// ActionFactory factory = ActionFactory.getInstance();
-//		// Action action = factory.getAction(cmd);
-//		CommandProcess commandProcess = (CommandProcess)commandMap.get(command);
-//		// ActionForward af = action.execute(request, response);
-//				try {
-//					view = commandProcess.requestPro(request, response);
-//				} catch (Throwable e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-//			dispatcher.forward(request, response);
-//	}
-//}
-
-	private void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String view = null;
-		CommandProcess com = null;
-		try {
-			String command = request.getRequestURI();
-			if (command.indexOf(request.getContextPath()) == 0) {
-				command = command.substring(request.getContextPath().length());
-			}
-			com = (CommandProcess) commandMap.get(command);
-			view = com.requestPro(request, response);
-		} catch (Throwable e) {
-			throw new ServletException(e);
+		// does what ActionFactory class did; /mvc/message.di=mvc.MessageProcess
+		// /jsptest/mvcMem/member.di
+		String command = request.getRequestURI();
+		System.out.println("command :"+command); // /jsptest/mvc/message.di
+		String path = request.getContextPath();
+		if(command.indexOf(request.getContextPath()) == 0) {
+			command = command.substring(path.length());
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+		// public class MessageProcess implements CommandProcess
+		// ActionFactory factory = ActionFactory.getInstance();
+		// Action action = factory.getAction(cmd);
+		System.out.println("command :"+command); // /mvc/message.di
+		CommandProcess commandProcess = (CommandProcess)commandMap.get(command);
+		System.out.println(" commandProcess:"+commandProcess.toString());
+		// ActionForward af = action.execute(request, response);
+				try {
+					view = commandProcess.requestPro(request, response);
+					System.out.println("view :"+view);
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
 	}
 }
+
+//	private void processRequest(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		String view = null;
+//		CommandProcess com = null;
+//		try {
+//			String command = request.getRequestURI();
+//			if (command.indexOf(request.getContextPath()) == 0) {
+//				command = command.substring(request.getContextPath().length());
+//			}
+//			com = (CommandProcess) commandMap.get(command);
+//			view = com.requestPro(request, response);
+//		} catch (Throwable e) {
+//			throw new ServletException(e);
+//		}
+//		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+//		dispatcher.forward(request, response);
+//	}
+//}
