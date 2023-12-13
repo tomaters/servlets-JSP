@@ -6,12 +6,12 @@
 <head>
 <title>Bulletin</title>
 <link href="style.css" rel="stylesheet" type="text/css">
-<script language="JavaScript" src="script.js"></script>
+<script lang="JavaScript" src="script.js"></script>
 </head>
 <body bgcolor="${bodyback_color}">
 	<div style="text-align:center">
 		<b>Edit content</b> <br>
-		<form method="post" name="writeform" action="/board/updatePro.do?pageNum=${pageNum}" onsubmit="return writeSave()">
+		<form method="post" name="writeform" action="/board/updateProcess.do?pageNum=${pageNum}" onsubmit="return writeSave()">
 			<table width="400" border="1" cellspacing="0" cellpadding="0" align="center">
 				<tr>
 					<td width="70" bgcolor="${value_color}" align="center">Name</td>

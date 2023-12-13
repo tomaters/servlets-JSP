@@ -98,6 +98,7 @@ public class BoardDAO {
 		 	return articleList;
 	}
 	
+	@SuppressWarnings("resource")
 	public void insertArticle(BoardVO article) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -130,7 +131,7 @@ public class BoardDAO {
 				step = 0;
 				depth = 0;
 			} // insert query
-			sql = "INSERT INTO board(num, writer, email, subject, pass, regdate, ref, step, depth, content, ip VALUES(board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO board(num, writer, email, subject, pass, regdate, ref, step, depth, content, ip) VALUES(board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, article.getWriter());
 			preparedStatement.setString(2, article.getEmail());
@@ -142,6 +143,7 @@ public class BoardDAO {
 			preparedStatement.setInt(8, depth);
 			preparedStatement.setString(9, article.getContent());
 			preparedStatement.setString(10, article.getIp());
+			preparedStatement.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -157,6 +159,7 @@ public class BoardDAO {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public BoardVO getArticle(int num) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -238,5 +241,83 @@ public class BoardDAO {
 				try { connection.close();
 				} catch(SQLException e) {}	
 		} return article;
+	}
+	
+	@SuppressWarnings("resource")
+	public int updateArticle(BoardVO article) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String DBPass = "";
+		String sql = "";
+		int result = -1;
+		try {
+			connection = ConnectionUtil.getConnection();
+			preparedStatement = connection.prepareStatement("SELECT pass FROM board WHERE num = ?");
+			preparedStatement.setInt(1,  article.getNum());
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				DBPass = resultSet.getString("pass");
+				if(DBPass.equals(article.getPass())){
+					sql = "UPDATE board SET writer=?, email=?, subject=?, content=? WHERE num=?";
+					preparedStatement = connection.prepareStatement(sql);
+					preparedStatement.setString(1, article.getWriter());
+					preparedStatement.setString(2, article.getEmail());
+					preparedStatement.setString(3, article.getSubject());
+					preparedStatement.setString(4, article.getContent());
+					preparedStatement.setInt(5, article.getNum());
+					preparedStatement.executeUpdate();
+					result = 1;
+				} else result = 0;
+			} 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(resultSet != null) 
+				try { resultSet.close();
+				} catch(SQLException e) {}
+			if(preparedStatement != null) 
+				try { preparedStatement.close();
+				} catch(SQLException e) {}
+			if(connection != null) 
+				try { connection.close();
+				} catch(SQLException e) {}	
+		} return result;
+	}
+	
+	@SuppressWarnings("resource")
+	public int deleteArticle(int num, String pass) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String DBPass = "";
+		int result = -1;
+		try {
+			connection = ConnectionUtil.getConnection();
+			preparedStatement = connection.prepareStatement("SELECT pass FROM board WHERE num = ?");
+			preparedStatement.setInt(1, num);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				DBPass = resultSet.getString("pass");
+				if(DBPass.equals(pass)) {
+					preparedStatement = connection.prepareStatement("DELETE FROM board WHERE num=?");
+					preparedStatement.setInt(1, num);
+					preparedStatement.executeUpdate();
+					result = 1;
+				} else result = 0;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(resultSet != null) 
+				try { resultSet.close();
+				} catch(SQLException e) {}
+			if(preparedStatement != null) 
+				try { preparedStatement.close();
+				} catch(SQLException e) {}
+			if(connection != null) 
+				try { connection.close();
+				} catch(SQLException e) {}	
+		} return result;
 	}
 }

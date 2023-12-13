@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="view/color.jspf" %>
 <html>
 <head>
 <title>Bulletin</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<body bgcolor="$bodyback_color">
+<body bgcolor="${bodyback_color}">
 	<div style="text-align: center">
-		<b>View articles</b><br>
+		<b>View article</b><br>
 		<form>
 			<table width="500" border="1" cellspacing="0" cellpadding="0"
 				align="center">

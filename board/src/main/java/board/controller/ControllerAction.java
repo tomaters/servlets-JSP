@@ -87,17 +87,18 @@ public class ControllerAction extends HttpServlet {
 		try {
 			// store into command the request URI
 			String command = request.getRequestURI();
-			System.out.println("command: " + command); // /board/writeForm.do
+//			System.out.println("command: " + command);
 			// if there is a context path in the command, remove it by using substring function. but here, the name of the path and folder are the same
 //			if(command.indexOf(request.getContextPath()) == 0) {
 //				command = command.substring(request.getContextPath().length());
 //			}
-			System.out.println("command: " + command); // writeForm.do
+			System.out.println("command: " + command);
 			// retrieve corresponding command object from commandMap in form of interface CommandAction
 			commandAction = (CommandAction)commandMap.get(command);
 			System.out.println("commandAction: " + commandAction.toString());
 			// process request using CommandAction and store data into String view
 			view = commandAction.requestProcess(request, response);
+			System.out.println("view: " + view);
 		} catch(Throwable e) {
 			throw new ServletException(e);
 		}
